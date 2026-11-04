@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% block title %}Отзывы — Админ-панель{% endblock %}
+
+{% block content %}
+  <h1 class="admin-h1">Отзывы</h1>
+  <p class="admin-subtitle">Отзывы публикуются сразу; здесь можно скрыть, ответить или удалить.</p>
+
+  {% for r in reviews %}
+  <div class="admin-review-card">
+    <div class="admin-review-meta">
+      <div>
+        <span class="admin-badge admin-badge-{{ r.branch }}">
+          {{ 'Бабайка' if r.branch == 'babajka' else 'Началовское ш.' }}
+        </span>
+        <span class="admin-badge admin-badge-{{ r.status }}" style="margin-left: 6px;">
+          {{ 'Опубликован' if r.status == 'published' else 'Скрыт' }}
+        </span>
+        <strong style="margin-left: 10px;">{{ r.author_name }}</strong>
+      </div>
+      <div class="admin-table-actions">
+        <form method="post" action="{{ url_for('admin_review_toggle', review_id=r.id) }}">
+          <button type="submit" class="admin-btn admin-btn-sm">
+            {{ 'Скрыть' if r.status == 'published' else 'Опубликовать' }}
+          </button>
+        </form>
+        <form method="post" action="{{ url_for('admin_review_delete', review_id=r.id) }}" onsubmit="return confirm('Удалить отзыв?');">
+          <button type="submit" class="admin-btn admin-btn-sm admin-btn-danger">Удалить</button>
+        </form>
+      </div>
+    </div>
+
+    <p class="admin-review-text">{{ r.text }}</p>
+
+    {% if r.admin_reply %}
+      <p class="admin-review-text" style="color: var(--amber-deep); font-style: italic;">Ответ администратора: {{ r.admin_reply }}</p>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('admin_review_reply', review_id=r.id) }}" class="admin-review-reply-form">
+      <textarea name="admin_reply" placeholder="Ответить на отзыв...">{{ r.admin_reply if r.admin_reply else '' }}</textarea>
+      <button type="submit" class="admin-btn admin-btn-sm">Сохранить ответ</button>
+    </form>
+  </div>
+  {% else %}
+  <p>Отзывов пока нет.</p>
+  {% endfor %}
+{% endblock %}

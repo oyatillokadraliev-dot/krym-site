@@ -1,0 +1,12 @@
+# Сейчас используются только встроенные в Python модули (sqlite3,
+# flask.session) — см. README про ограничение среды разработки.
+# Ниже — рекомендованный стек для реального продакшен-деплоя.
+
+Flask>=3.1
+
+# Рекомендуется при переходе на PostgreSQL:
+# Flask-SQLAlchemy>=3.1
+# psycopg2-binary>=2.9      # драйвер PostgreSQL
+# Flask-Login>=0.6          # полноценная авторизация вместо flask.session
+# Flask-Migrate>=4.0        # миграции схемы БД (Alembic)
+# python-dotenv>=1.0        # чтение .env с переменными окружения

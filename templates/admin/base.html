@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Админ-панель — Крым{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-body">
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="{{ url_for('static', filename='img/logo-transparent.png') }}" alt="Крым">
+        <span>Админ-панель</span>
+      </div>
+      <nav class="admin-nav">
+        <a href="{{ url_for('admin_dashboard') }}" class="{{ 'is-active' if request.endpoint == 'admin_dashboard' }}">Обзор</a>
+        <a href="{{ url_for('admin_trainers') }}" class="{{ 'is-active' if request.endpoint and request.endpoint.startswith('admin_trainer') }}">Тренеры</a>
+        <a href="{{ url_for('admin_schedule') }}" class="{{ 'is-active' if request.endpoint and request.endpoint.startswith('admin_schedule') }}">Расписание</a>
+        <a href="{{ url_for('admin_prices') }}" class="{{ 'is-active' if request.endpoint and request.endpoint.startswith('admin_price') }}">Цены (Началовское ш.)</a>
+        <a href="{{ url_for('admin_reviews') }}" class="{{ 'is-active' if request.endpoint and request.endpoint.startswith('admin_review') }}">Отзывы</a>
+      </nav>
+      <div class="admin-sidebar-footer">
+        <span>{{ session.get('admin_username', '') }}</span>
+        <a href="{{ url_for('admin_logout') }}">Выйти</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="admin-flash">
+            {% for message in messages %}
+              <div class="admin-flash-item">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+</body>
+</html>

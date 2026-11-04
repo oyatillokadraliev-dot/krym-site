@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+
+{% block title %}Крым — спортивный комплекс{% endblock %}
+{% block description %}Спортивный комплекс «Крым»: два филиала, единоборства, бассейн, тренажёрный зал, запись онлайн.{% endblock %}
+
+{% block content %}
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-columns" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-eyebrow hero-reveal" data-reveal="eyebrow">
+        <span class="dot"></span>
+        2 филиала в Астрахани
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line"><span class="hero-reveal" data-reveal="word">«Крым»</span> <span class="hero-reveal" data-reveal="word">—</span></span>
+        <span class="line"><span class="hero-reveal" data-reveal="word">место,</span> <span class="hero-reveal" data-reveal="word">где</span></span>
+        <span class="line"><span class="hero-reveal" data-reveal="word">спорт</span> <span class="hero-reveal" data-reveal="word" style="color: var(--amber)">объединяет</span></span>
+        <span class="line"><span class="hero-reveal" data-reveal="word" style="color: var(--amber)">семью</span></span>
+      </h1>
+
+      <p class="hero-sub hero-reveal" data-reveal="fade">
+        Бассейн, фитнес, детские и взрослые секции — всё для здоровья и
+        развития семьи. Выбирайте своё направление и записывайтесь
+        онлайн прямо сейчас!
+      </p>
+
+      <div class="hero-actions hero-reveal" data-reveal="fade">
+        <a href="#branches" class="btn btn-primary">Выбрать филиал</a>
+        <a href="#schedule" class="btn btn-ghost">Смотреть расписание</a>
+      </div>
+
+      <div class="hero-stats hero-reveal" data-reveal="fade">
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-label">филиала в&nbsp;городе</div>
+        </div>
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">направлений спорта</div>
+        </div>
+        <div>
+          <div class="stat-num">07:00</div>
+          <div class="stat-label">открытие в&nbsp;будни</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ НАПРАВЛЕНИЯ ============ -->
+  <section id="directions">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">01</span>
+        <div>
+          <span class="section-tag">Чем заняться</span>
+          <h2 class="section-title">Направления спорта</h2>
+        </div>
+        <p class="section-desc">
+          Единоборства, бассейн и тренажёрный зал — в филиале «Бабайка».
+          Актуальные цены и варианты абонементов — на странице цен.
+        </p>
+      </div>
+
+      <div class="directions-grid">
+        <div class="direction-card">
+          <span class="direction-num">01</span>
+          <h3 class="direction-name">Бокс</h3>
+          <p class="direction-desc">Групповые тренировки, абонементы на 12 занятий или разовое посещение.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">02</span>
+          <h3 class="direction-name">Тайский бокс</h3>
+          <p class="direction-desc">Групповые тренировки, абонементы на 12 занятий или разовое посещение.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">03</span>
+          <h3 class="direction-name">Вольная борьба</h3>
+          <p class="direction-desc">Групповые тренировки, абонементы на 12 занятий или разовое посещение.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">04</span>
+          <h3 class="direction-name">Грэпплинг</h3>
+          <p class="direction-desc">Групповые тренировки, абонементы на 16 занятий или разовое посещение.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">05</span>
+          <h3 class="direction-name">Рукопашный бой</h3>
+          <p class="direction-desc">Групповые тренировки, абонементы на 12 занятий или разовое посещение.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">06</span>
+          <h3 class="direction-name">Бассейн</h3>
+          <p class="direction-desc">Свободное плавание, аквааэробика, обучение плаванию взрослых и детей.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">07</span>
+          <h3 class="direction-name">Тренажёрный зал</h3>
+          <p class="direction-desc">Свободный доступ по абонементу, дневные и вечерние тарифы.</p>
+        </div>
+        <div class="direction-card">
+          <span class="direction-num">08</span>
+          <h3 class="direction-name">Фитнес-аэробика</h3>
+          <p class="direction-desc">Групповые занятия по абонементу или разовое посещение.</p>
+        </div>
+      </div>
+
+      <div class="directions-cta">
+        <a href="/prices" class="btn btn-dark">Смотреть все цены</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ТРЕНАЖЁРНЫЙ ЗАЛ ============ -->
+  <section id="gym">
+    <div class="container">
+      <div class="feature-split">
+        <div>
+          <span class="section-tag">Тренажёрный зал</span>
+          <h2 class="section-title" style="max-width: 16ch; margin-bottom: 24px;">Металл высокой пробы</h2>
+          <p class="section-desc" style="max-width: 44ch;">
+            Профессиональное силовое и кардиооборудование, свободные веса
+            и зона функционального тренинга — для тех, кто тренируется
+            серьёзно и регулярно.
+          </p>
+        </div>
+        <div class="photo-block photo-block-equipment">
+          <div class="photo-block-label">Тренажёрный зал</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ БАССЕЙН ============ -->
+  <section style="background: var(--paper-dim);">
+    <div class="container">
+      <div class="feature-split is-reverse">
+        <div class="photo-block photo-block-pool">
+          <div class="photo-block-label">Бассейн</div>
+        </div>
+        <div>
+          <span class="section-tag" style="color: var(--amber-deep)">Бассейн</span>
+          <h2 class="section-title" style="max-width: 16ch; margin-bottom: 24px;">Чистой воды удовольствие</h2>
+          <p class="section-desc" style="max-width: 44ch;">
+            Бассейн для плавания и аквааэробики, обучение плаванию для
+            детей и взрослых. Вода проходит регулярную систему очистки.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИЛИАЛЫ ============ -->
+  <section class="branches" id="branches">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">02</span>
+        <div>
+          <span class="section-tag" style="color: var(--amber)">Где заниматься</span>
+          <h2 class="section-title">Два филиала</h2>
+        </div>
+        <p class="section-desc" style="color: rgba(250,248,245,0.6)">
+          Выберите удобный филиал — расписание, тренеры и цены
+          у каждого свои.
+        </p>
+      </div>
+
+      <div class="branch-grid">
+        <div class="branch-card">
+          <h3 class="branch-name">Бабайка</h3>
+          <div class="branch-map-embed">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?mode=search&amp;text=Астрахань%2C%20Бульварная%20улица%2C%2021&amp;z=16&amp;lang=ru_RU"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Филиал «Бабайка» на карте"></iframe>
+          </div>
+          <div class="branch-meta">
+            <span><strong>Телефон:</strong> 8 8512 55-13-02</span>
+            <span><strong>Пн–пт:</strong> 08:00–22:00</span>
+            <span><strong>Сб–вс:</strong> 08:00–21:00</span>
+            <span><strong>Адрес:</strong> Бульварная ул., 21</span>
+          </div>
+          <div class="branch-links">
+            <a href="https://2gis.ru/astrakhan/geo/1126428187908752" target="_blank" rel="noopener" class="branch-map-link">2ГИС</a>
+            <a href="https://yandex.ru/maps/-/CPD5iB9k" target="_blank" rel="noopener" class="branch-map-link">Яндекс Карты</a>
+          </div>
+          <a href="/branches#babajka" class="btn btn-ghost">Подробнее о филиале</a>
+        </div>
+
+        <div class="branch-card">
+          <h3 class="branch-name">Началовское шоссе</h3>
+          <div class="branch-map-embed">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?mode=search&amp;text=Астрахань%2C%20Началовское%20шоссе%2C%2050&amp;z=16&amp;lang=ru_RU"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Филиал «Началовское шоссе» на карте"></iframe>
+          </div>
+          <div class="branch-meta">
+            <span><strong>Телефон:</strong> 8 8512 49-16-98</span>
+            <span><strong>Ежедневно:</strong> 08:00–00:00</span>
+            <span><strong>Адрес:</strong> Началовское ш., 50</span>
+            <span><strong>Также:</strong> есть гостиничные номера</span>
+          </div>
+          <div class="branch-links">
+            <a href="https://2gis.ru/astrakhan/geo/70000001045643708" target="_blank" rel="noopener" class="branch-map-link">2ГИС</a>
+            <a href="https://yandex.ru/maps/-/CTrhqM2A" target="_blank" rel="noopener" class="branch-map-link">Яндекс Карты</a>
+          </div>
+          <a href="/branches#nachalovskoe" class="btn btn-ghost">Подробнее о филиале</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ТРЕНЕРЫ ============ -->
+  <section id="trainers">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">03</span>
+        <div>
+          <span class="section-tag">Команда</span>
+          <h2 class="section-title">Тренеры</h2>
+        </div>
+        <p class="section-desc">
+          Фотографии и описания тренеров заказчик предоставит
+          отдельно — ниже временные карточки для структуры страницы.
+        </p>
+      </div>
+
+      <div class="slider" data-slider>
+        <div class="trainers-row slider-track" data-slider-track>
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-info">
+                <div class="trainer-name">Тренер 1</div>
+                <div class="trainer-sport">Бокс</div>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-info">
+                <div class="trainer-name">Тренер 2</div>
+                <div class="trainer-sport">Единоборства</div>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-info">
+                <div class="trainer-name">Тренер 3</div>
+                <div class="trainer-sport">Тренажёрный зал</div>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-info">
+                <div class="trainer-name">Тренер 4</div>
+                <div class="trainer-sport">Функциональный тренинг</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button class="slider-arrow" data-slider-prev aria-label="Предыдущие тренеры">←</button>
+          <button class="slider-arrow" data-slider-next aria-label="Следующие тренеры">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ РАСПИСАНИЕ (тизер) ============ -->
+  <section class="schedule-teaser" id="schedule">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">04</span>
+        <div>
+          <span class="section-tag">Вечерние занятия</span>
+          <h2 class="section-title">Расписание</h2>
+        </div>
+        <p class="section-desc">
+          Полное расписание по дням недели — на странице каждого филиала.
+        </p>
+      </div>
+
+      <div class="schedule-table">
+        <div class="schedule-row is-head">
+          <div>Время</div>
+          <div>Занятие</div>
+          <div>Дни</div>
+          <div>Филиал</div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">19:00</div>
+          <div><div class="schedule-class">Муай тай</div></div>
+          <div class="schedule-trainer">Пн, ср, пт</div>
+          <div class="schedule-branch">Бабайка</div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">19:00</div>
+          <div><div class="schedule-class">Бокс</div></div>
+          <div class="schedule-trainer">Вт, чт, сб</div>
+          <div class="schedule-branch">Бабайка</div>
+        </div>
+        <div class="schedule-row">
+          <div class="schedule-time">19:00</div>
+          <div><div class="schedule-class">Бокс</div></div>
+          <div class="schedule-trainer">Пн, ср, пт / вт, чт, сб</div>
+          <div class="schedule-branch">Началовское ш.</div>
+        </div>
+      </div>
+
+      <div class="directions-cta">
+        <a href="/branches" class="btn btn-dark">Полное расписание филиалов</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ОТДЫХ И ВОССТАНОВЛЕНИЕ ============ -->
+  <section class="recovery" id="recovery">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">05</span>
+        <div>
+          <span class="section-tag" style="color: var(--amber)">После тренировки</span>
+          <h2 class="section-title">Отдых и восстановление</h2>
+        </div>
+        <p class="section-desc" style="color: rgba(250,248,245,0.6)">
+          В филиале «Бабайка» есть всё необходимое для полноценного
+          восстановления после занятий.
+        </p>
+      </div>
+
+      <!-- Галерея "Сауна" с навигацией, как на референсе -->
+      <div class="photo-gallery" data-gallery style="margin-bottom: 56px;">
+        <div class="photo-gallery-slide photo-block-sauna is-active" data-gallery-slide>
+          <div class="photo-gallery-caption">Сауна</div>
+        </div>
+        <div class="photo-gallery-slide photo-block-equipment" data-gallery-slide>
+          <div class="photo-gallery-caption">Раздевалки</div>
+        </div>
+        <div class="photo-gallery-slide photo-block-pool" data-gallery-slide>
+          <div class="photo-gallery-caption">Зона отдыха</div>
+        </div>
+        <div class="photo-gallery-nav">
+          <button class="photo-gallery-arrow" data-gallery-prev aria-label="Предыдущее фото">←</button>
+          <button class="photo-gallery-arrow" data-gallery-next aria-label="Следующее фото">→</button>
+        </div>
+        <div class="photo-gallery-counter" data-gallery-counter>1 / 3</div>
+      </div>
+
+      <div class="recovery-grid">
+        <div class="recovery-item"><span>Сауна</span></div>
+        <div class="recovery-item"><span>Раздевалки с душевыми</span></div>
+        <div class="recovery-item"><span>Зона отдыха</span></div>
+        <div class="recovery-item"><span>Парковка у входа</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГОСТИНИЧНЫЕ НОМЕРА ============ -->
+  <section id="hotel">
+    <div class="container">
+      <div class="feature-split">
+        <div>
+          <span class="section-tag">Началовское шоссе</span>
+          <h2 class="section-title" style="max-width: 18ch; margin-bottom: 24px;">Остаться подольше? Легко</h2>
+          <p class="section-desc" style="max-width: 44ch; margin-bottom: 28px;">
+            На филиале «Началовское шоссе» есть гостиничные номера —
+            удобно, если приехали издалека или хотите задержаться после
+            тренировок. Подробности и бронирование — по телефону филиала.
+          </p>
+          <a href="/branches#nachalovskoe" class="btn btn-dark">Подробнее о филиале</a>
+        </div>
+        <div class="photo-block photo-block-hotel">
+          <div class="photo-block-label">Гостиничные номера</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ОТЗЫВЫ ============ -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">06</span>
+        <div>
+          <span class="section-tag">Отзывы</span>
+          <h2 class="section-title">Что говорят клиенты</h2>
+        </div>
+      </div>
+
+      <div class="reviews-row">
+        {% for r in reviews %}
+        <div class="review-card">
+          <p class="review-text">«{{ r.text }}»</p>
+          <div class="review-author">
+            <div class="review-avatar">{{ r.author_name[0] }}</div>
+            <div>
+              <div class="review-name">{{ r.author_name }}</div>
+              <div class="review-for">{{ 'Филиал «Бабайка»' if r.branch == 'babajka' else 'Началовское шоссе' }}</div>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <p class="section-desc">Отзывов пока нет — станьте первым.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="cta-title">Готовы к первой тренировке?</h2>
+      <div class="cta-actions">
+        <a href="#schedule" class="btn btn-primary">Записаться на занятие</a>
+        <a href="tel:+78512551302" class="btn btn-ghost">Позвонить: 8 8512 55-13-02</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

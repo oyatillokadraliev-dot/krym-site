@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+{% block title %}Обзор — Админ-панель{% endblock %}
+
+{% block content %}
+  <h1 class="admin-h1">Обзор</h1>
+  <p class="admin-subtitle">Сводка по данным сайта.</p>
+
+  <div class="admin-stats-grid">
+    <div class="admin-stat-card">
+      <div class="admin-stat-num">{{ counts.trainers }}</div>
+      <div class="admin-stat-label">Тренеров (оба филиала)</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-num">{{ counts.directions }}</div>
+      <div class="admin-stat-label">Направлений</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-num">{{ counts.schedule_items }}</div>
+      <div class="admin-stat-label">Занятий в расписании</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-num">{{ counts.prices }}</div>
+      <div class="admin-stat-label">Позиций в прайсе (Началовское ш.)</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-num">{{ counts.reviews_published }}</div>
+      <div class="admin-stat-label">Опубликованных отзывов</div>
+    </div>
+    <div class="admin-stat-card">
+      <div class="admin-stat-num">{{ counts.reviews_hidden }}</div>
+      <div class="admin-stat-label">Скрытых отзывов</div>
+    </div>
+  </div>
+{% endblock %}

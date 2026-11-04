@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Изменить занятие' if item else 'Новое занятие' }} — Админ-панель{% endblock %}
+
+{% block content %}
+  <h1 class="admin-h1">{{ 'Изменить занятие' if item else 'Новое занятие' }}</h1>
+
+  <form method="post" class="admin-form">
+    <div class="admin-field">
+      <label for="branch">Филиал</label>
+      <select id="branch" name="branch" required>
+        <option value="babajka" {{ 'selected' if item and item.branch == 'babajka' }}>Бабайка</option>
+        <option value="nachalovskoe" {{ 'selected' if item and item.branch == 'nachalovskoe' }}>Началовское шоссе</option>
+      </select>
+    </div>
+
+    <div class="admin-field">
+      <label for="days">Дни (например «Пн, ср, пт»)</label>
+      <input type="text" id="days" name="days" required value="{{ item.days if item else '' }}">
+    </div>
+
+    <div class="admin-field">
+      <label for="time_range">Время (например «19:00–21:00»)</label>
+      <input type="text" id="time_range" name="time_range" required value="{{ item.time_range if item else '' }}">
+    </div>
+
+    <div class="admin-field">
+      <label for="class_name">Название занятия</label>
+      <input type="text" id="class_name" name="class_name" required value="{{ item.class_name if item else '' }}">
+    </div>
+
+    <div class="admin-field">
+      <label for="sort_order">Порядок отображения</label>
+      <input type="number" id="sort_order" name="sort_order" value="{{ item.sort_order if item else 0 }}">
+    </div>
+
+    <div class="admin-form-actions">
+      <button type="submit" class="admin-btn admin-btn-primary">Сохранить</button>
+      <a href="{{ url_for('admin_schedule') }}" class="admin-btn">Отмена</a>
+    </div>
+  </form>
+{% endblock %}

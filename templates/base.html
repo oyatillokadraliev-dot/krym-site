@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Крым — спортивный комплекс{% endblock %}</title>
+  <meta name="description" content="{% block description %}Спортивный комплекс «Крым»: два филиала, единоборства, бассейн, тренажёрный зал, запись онлайн.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="is-loading">
+
+  <!-- ============ ПРЕЛОАДЕР ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <svg class="preloader-runner" width="110" height="90" viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg">
+        <g class="runner-figure" fill="none" stroke="#f09538" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle class="runner-head" cx="63" cy="14" r="7" fill="#f09538" stroke="none"></circle>
+          <path class="runner-torso" d="M60 21 L50 46"></path>
+          <path class="runner-arm-back" d="M57 27 L42 20"></path>
+          <path class="runner-arm-front" d="M55 29 L68 42"></path>
+          <path class="runner-leg-back" d="M50 46 L36 56 L28 78"></path>
+          <path class="runner-leg-front" d="M50 46 L63 60 L58 82"></path>
+        </g>
+        <line class="runner-ground" x1="6" y1="86" x2="104" y2="86" stroke="rgba(250,248,245,0.18)" stroke-width="2" stroke-linecap="round"></line>
+      </svg>
+      <div class="preloader-progress">
+        <span class="preloader-percent" id="preloaderPercent">00</span><span>%</span>
+      </div>
+      <div class="preloader-bar"><span id="preloaderBarFill"></span></div>
+      <div class="preloader-label">Крым — спортивный комплекс</div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-row">
+      <a href="/" class="brand">
+        <img src="{{ url_for('static', filename='img/logo-transparent.png') }}" alt="Крым — спортивный комплекс">
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="/branches">Филиалы</a>
+        <a href="/#directions">Направления</a>
+        <a href="/#trainers">Тренеры</a>
+        <a href="/#recovery">Отдых</a>
+        <a href="/#schedule">Расписание</a>
+        <a href="/prices">Цены</a>
+        <a href="/#reviews">Отзывы</a>
+        <a href="#" class="main-nav-mobile-only">Личный кабинет</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#" class="btn btn-ghost">Личный кабинет</a>
+        <a href="/#schedule" class="btn btn-dark">Записаться</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-scrim" id="navScrim"></div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <!-- ============ ФУТЕР ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="{{ url_for('static', filename='img/logo-transparent.png') }}" alt="Крым">
+          <p>Спортивный комплекс с двумя филиалами. Единоборства, бассейн, тренажёрный зал, групповые программы.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Филиалы</div>
+          <a href="/branches#babajka">Бабайка</a>
+          <a href="/branches#nachalovskoe">Началовское шоссе</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Разделы</div>
+          <a href="/#directions">Направления</a>
+          <a href="/#trainers">Тренеры</a>
+          <a href="/#schedule">Расписание</a>
+          <a href="/prices">Цены</a>
+          <a href="/#reviews">Отзывы</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Связь</div>
+          <p>Бабайка: 8 8512 55-13-02</p>
+          <p>Началовское ш.: 8 8512 49-16-98</p>
+          <p>Для сообщений: 8 988 073-89-99</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Спортивный комплекс «Крым»</span>
+        <div class="footer-socials">
+          <a href="#" aria-label="ВКонтакте">VK</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
