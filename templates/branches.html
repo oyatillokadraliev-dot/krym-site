@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+
+{% block title %}Филиалы — Крым{% endblock %}
+{% block description %}Два филиала спортивного комплекса «Крым»: мкр. Бабаевского и Началовское шоссе. Адреса, расписание, направления и цены.{% endblock %}
+
+{% block content %}
+
+  <!-- ============ ЗАГОЛОВОК + ПЕРЕКЛЮЧАТЕЛЬ ============ -->
+  <section class="page-hero">
+    <div class="hero-columns" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="container page-hero-inner">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Где заниматься
+      </div>
+      <h1 class="page-hero-title">Филиалы</h1>
+      <p class="hero-sub" style="margin-bottom: 40px;">
+        Два филиала в Астрахани — у каждого свой адрес, расписание и набор услуг.
+      </p>
+
+      <div class="branch-switch" role="tablist" aria-label="Выбор филиала">
+        <button class="branch-switch-btn is-active" id="tabBabajka" role="tab" aria-selected="true" aria-controls="panelBabajka" data-target="babajka">
+          мкр. Бабаевского
+        </button>
+        <button class="branch-switch-btn" id="tabNachalovskoe" role="tab" aria-selected="false" aria-controls="panelNachalovskoe" data-target="nachalovskoe">
+          Началовское шоссе
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИЛИАЛ: БАБАЙКА ============ -->
+  <div class="branch-panel is-active" id="panelBabajka" role="tabpanel" aria-labelledby="tabBabajka">
+
+    <section id="babajka">
+      <div class="container">
+        <div class="branch-overview">
+          <div class="branch-overview-info">
+            <span class="section-tag">Филиал «мкр. Бабаевского»</span>
+            <h2 class="section-title" style="max-width: 20ch;">Единоборства, бассейн и тренажёрный зал</h2>
+            <p class="section-desc" style="max-width: 44ch; margin-bottom: 28px;">
+              Основной филиал комплекса: групповые занятия по пяти направлениям
+              единоборств, бассейн с аквааэробикой и обучением плаванию,
+              тренажёрный зал с дневными и вечерними абонементами.
+            </p>
+
+            <div class="branch-meta branch-meta-light">
+              <span><strong>Адрес:</strong> Бульварная ул., 21</span>
+              <span><strong>Телефон:</strong> 8 8512 55-13-02</span>
+              <span><strong>Пн–пт:</strong> 08:00–22:00</span>
+              <span><strong>Сб–вс:</strong> 09:00–21:00</span>
+            </div>
+
+            <div class="branch-links" style="margin-top: 24px;">
+              <a href="https://2gis.ru/astrakhan/geo/1126428187908752" target="_blank" rel="noopener" class="branch-map-link branch-map-link-light">2ГИС — маршрут</a>
+              <a href="https://yandex.ru/maps/-/CPD5iB9k" target="_blank" rel="noopener" class="branch-map-link branch-map-link-light">Яндекс Карты</a>
+            </div>
+
+            <a href="tel:+78512551302" class="btn btn-primary" style="margin-top: 32px;">Позвонить в филиал</a>
+          </div>
+
+          <div class="photo-block photo-block-combat" style="min-height: 340px;">
+            <div class="photo-block-label">Филиал «мкр. Бабаевского»</div>
+          </div>
+        </div>
+
+        <div class="branch-map-embed branch-map-embed-light" style="margin-top: 32px;">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?mode=search&amp;text=Астрахань%2C%20Бульварная%20улица%2C%2021&amp;z=16&amp;lang=ru_RU"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Филиал «мкр. Бабаевского» на карте"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Направления филиала -->
+    <section class="price-section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">01</span>
+          <div>
+            <span class="section-tag" style="color: var(--amber)">Направления</span>
+            <h2 class="section-title">Чем заняться в мкр. Бабаевского</h2>
+          </div>
+        </div>
+
+        <div class="directions-grid" style="border-color: var(--line-on-dark); background: var(--line-on-dark);">
+          {% for d in data.babajka.directions %}
+          <div class="direction-card" style="background: var(--ink-soft);">
+            <span class="direction-num">{{ '%02d' | format(loop.index) }}</span>
+            <h3 class="direction-name" style="color: var(--paper);">{{ d.name }}</h3>
+            <p class="direction-desc" style="color: rgba(250,248,245,0.6);">{{ d.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Тренеры филиала -->
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">02</span>
+          <div>
+            <span class="section-tag">Команда</span>
+            <h2 class="section-title">Тренеры в мкр. Бабаевского</h2>
+          </div>
+          <p class="section-desc">Фото и описания тренеров заказчик предоставит отдельно.</p>
+        </div>
+
+        <div class="slider" data-slider>
+          <div class="trainers-row slider-track" data-slider-track>
+            {% for t in data.babajka.trainers %}
+            <div class="trainer-card">
+              <div class="trainer-photo">
+                <div class="trainer-info">
+                  <div class="trainer-name">{{ t.name }}</div>
+                  <div class="trainer-sport">{{ t.sport }}</div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="slider-controls">
+            <button class="slider-arrow" data-slider-prev aria-label="Предыдущие тренеры">←</button>
+            <button class="slider-arrow" data-slider-next aria-label="Следующие тренеры">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Расписание -->
+    <section class="schedule-teaser">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">03</span>
+          <div>
+            <span class="section-tag">Расписание</span>
+            <h2 class="section-title">Занятия в мкр. Бабаевского</h2>
+          </div>
+        </div>
+
+        {% set babajka_days_order = ['Пн, ср, пт', 'Вт, чт, сб', 'Пн, вт, чт, сб'] %}
+        {% for days_group in babajka_days_order %}
+          {% set group_items = data.babajka.schedule | selectattr('days', 'equalto', days_group) | list %}
+          {% if group_items %}
+          <h3 class="price-group-title" style="margin-bottom: 16px;">
+            {{ {'Пн, ср, пт': 'Понедельник, среда, пятница', 'Вт, чт, сб': 'Вторник, четверг, суббота', 'Пн, вт, чт, сб': 'Понедельник, вторник, четверг, суббота'}[days_group] }}
+          </h3>
+          <div class="schedule-table" style="margin-bottom: 36px;">
+            <div class="schedule-row is-head">
+              <div>Время</div>
+              <div>Занятие</div>
+            </div>
+            {% for item in group_items %}
+            <div class="schedule-row">
+              <div class="schedule-time">{{ item.time_range }}</div>
+              <div><div class="schedule-class">{{ item.class_name }}</div></div>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Полный прайс -->
+    <section class="price-section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">04</span>
+          <div>
+            <span class="section-tag" style="color: var(--amber)">Цены</span>
+            <h2 class="section-title">Прайс в мкр. Бабаевского</h2>
+          </div>
+          <p class="section-desc" style="color: rgba(250,248,245,0.6)">
+            Абонементы действуют 30 дней с даты покупки.
+          </p>
+        </div>
+
+        <div class="price-groups price-groups-dark">
+          <div class="price-group">
+            <h3 class="price-group-title">Бокс</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">12 занятий</span><span class="price-value">3 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">Разовое</span><span class="price-value">400 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Тайский бокс</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">12 занятий</span><span class="price-value">3 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">Разовое</span><span class="price-value">400 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Вольная борьба</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">12 занятий</span><span class="price-value">3 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">Разовое</span><span class="price-value">400 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Рукопашный бой</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">12 занятий</span><span class="price-value">3 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">Разовое</span><span class="price-value">400 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Грэпплинг</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">16 занятий</span><span class="price-value">3 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">Разовое</span><span class="price-value">400 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Бассейн · посещение</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">4 посещения</span><span class="price-value">1 400 ₽</span></div>
+              <div class="price-row"><span class="price-name">8 посещений</span><span class="price-value">2 500 ₽</span></div>
+              <div class="price-row"><span class="price-name">12 посещений</span><span class="price-value">3 500 ₽</span></div>
+              <div class="price-row"><span class="price-name">Свободный</span><span class="price-value">7 000 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Бассейн · дневной</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">4 посещения</span><span class="price-value">1 200 ₽</span></div>
+              <div class="price-row"><span class="price-name">8 посещений</span><span class="price-value">2 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">12 посещений</span><span class="price-value">2 800 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Аквааэробика</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">8 занятий</span><span class="price-value">3 800 ₽</span></div>
+              <div class="price-row"><span class="price-name">10 занятий</span><span class="price-value">4 300 ₽</span></div>
+              <div class="price-row"><span class="price-name">Разовое</span><span class="price-value">550 ₽</span></div>
+            </div>
+          </div>
+          <div class="price-group">
+            <h3 class="price-group-title">Тренажёрный зал</h3>
+            <div class="price-rows">
+              <div class="price-row"><span class="price-name">4 занятия</span><span class="price-value">1 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">8 дневной</span><span class="price-value">1 100 ₽</span></div>
+              <div class="price-row"><span class="price-name">12 дневной</span><span class="price-value">1 500 ₽</span></div>
+              <div class="price-row"><span class="price-name">8 вечерний</span><span class="price-value">1 500 ₽</span></div>
+              <div class="price-row"><span class="price-name">12 вечерний</span><span class="price-value">2 000 ₽</span></div>
+              <div class="price-row"><span class="price-name">Свободный</span><span class="price-value">3 000 ₽</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="directions-cta">
+          <a href="/prices" class="btn btn-ghost" style="border-color: var(--line-on-dark);">Полный прайс со всеми разделами</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ ФИЛИАЛ: НАЧАЛОВСКОЕ ШОССЕ ============ -->
+  <div class="branch-panel" id="panelNachalovskoe" role="tabpanel" aria-labelledby="tabNachalovskoe">
+
+    <section id="nachalovskoe">
+      <div class="container">
+        <div class="branch-overview">
+          <div class="branch-overview-info">
+            <span class="section-tag">Филиал «Началовское шоссе»</span>
+            <h2 class="section-title" style="max-width: 20ch;">Бассейн и бокс, каждый день до полуночи</h2>
+            <p class="section-desc" style="max-width: 44ch; margin-bottom: 28px;">
+              Бассейн с аквааэробикой и обучением плаванию, сауна и бокс.
+              Филиал работает ежедневно до полуночи. Также на территории
+              есть гостиничные номера — удобно, если приехали издалека
+              или хотите остаться подольше.
+            </p>
+
+            <div class="branch-meta branch-meta-light">
+              <span><strong>Адрес:</strong> Началовское ш., 50</span>
+              <span><strong>Телефон:</strong> 8 8512 49-16-98</span>
+              <span><strong>Ежедневно:</strong> 08:00–00:00</span>
+              <span><strong>Также:</strong> гостиничные номера на территории</span>
+            </div>
+
+            <div class="branch-links" style="margin-top: 24px;">
+              <a href="https://2gis.ru/astrakhan/geo/70000001045643708" target="_blank" rel="noopener" class="branch-map-link branch-map-link-light">2ГИС — маршрут</a>
+              <a href="https://yandex.ru/maps/-/CTrhqM2A" target="_blank" rel="noopener" class="branch-map-link branch-map-link-light">Яндекс Карты</a>
+            </div>
+
+            <a href="tel:+78512491698" class="btn btn-primary" style="margin-top: 32px;">Позвонить в филиал</a>
+          </div>
+
+          <div class="photo-block photo-block-pool" style="min-height: 340px;">
+            <div class="photo-block-label">Филиал «Началовское шоссе»</div>
+          </div>
+        </div>
+
+        <div class="branch-map-embed branch-map-embed-light" style="margin-top: 32px;">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?mode=search&amp;text=Астрахань%2C%20Началовское%20шоссе%2C%2050&amp;z=16&amp;lang=ru_RU"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="Филиал «Началовское шоссе» на карте"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Направления филиала -->
+    <section class="price-section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">01</span>
+          <div>
+            <span class="section-tag" style="color: var(--amber)">Направления</span>
+            <h2 class="section-title">Чем заняться на Началовском шоссе</h2>
+          </div>
+        </div>
+
+        <div class="directions-grid" style="border-color: var(--line-on-dark); background: var(--line-on-dark);">
+          {% for d in data.nachalovskoe.directions %}
+          <div class="direction-card" style="background: var(--ink-soft);">
+            <span class="direction-num">{{ '%02d' | format(loop.index) }}</span>
+            <h3 class="direction-name" style="color: var(--paper);">{{ d.name }}</h3>
+            <p class="direction-desc" style="color: rgba(250,248,245,0.6);">{{ d.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Расписание -->
+    <section class="schedule-teaser">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">02</span>
+          <div>
+            <span class="section-tag">Расписание</span>
+            <h2 class="section-title">Занятия на Началовском шоссе</h2>
+          </div>
+        </div>
+
+        {% set nach_pool_main = data.nachalovskoe.schedule | selectattr('days', 'equalto', 'Вт, чт, сб') | rejectattr('class_name', 'equalto', 'Бокс') | list %}
+        {% set nach_pool_mon = data.nachalovskoe.schedule | selectattr('days', 'equalto', 'Пн') | list %}
+        {% set nach_boxing = data.nachalovskoe.schedule | selectattr('class_name', 'equalto', 'Бокс') | list %}
+
+        {% if nach_pool_main %}
+        <h3 class="price-group-title" style="margin-bottom: 16px;">Бассейн · вторник, четверг, суббота</h3>
+        <div class="schedule-table" style="margin-bottom: 36px;">
+          <div class="schedule-row is-head">
+            <div>Время</div>
+            <div>Занятие</div>
+          </div>
+          {% for item in nach_pool_main %}
+          <div class="schedule-row">
+            <div class="schedule-time">{{ item.time_range }}</div>
+            <div><div class="schedule-class">{{ item.class_name }}</div></div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if nach_pool_mon %}
+        <h3 class="price-group-title" style="margin-bottom: 16px;">Бассейн · понедельник</h3>
+        <div class="schedule-table" style="margin-bottom: 36px;">
+          <div class="schedule-row is-head">
+            <div>Время</div>
+            <div>Занятие</div>
+          </div>
+          {% for item in nach_pool_mon %}
+          <div class="schedule-row">
+            <div class="schedule-time">{{ item.time_range }}</div>
+            <div><div class="schedule-class">{{ item.class_name }}</div></div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if nach_boxing %}
+        <h3 class="price-group-title" style="margin-bottom: 16px;">Бокс</h3>
+        <div class="schedule-table">
+          <div class="schedule-row is-head">
+            <div>Время</div>
+            <div>Дни</div>
+          </div>
+          {% for item in nach_boxing %}
+          <div class="schedule-row">
+            <div class="schedule-time">{{ item.time_range }}</div>
+            <div><div class="schedule-class">{{ item.days }}</div></div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <!-- Прайс -->
+    <section class="price-section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">03</span>
+          <div>
+            <span class="section-tag" style="color: var(--amber)">Цены</span>
+            <h2 class="section-title">Прайс на Началовском шоссе</h2>
+          </div>
+        </div>
+
+        <div class="price-groups price-groups-dark">
+          {% for category, items in data.nachalovskoe.prices.items() %}
+          <div class="price-group">
+            <h3 class="price-group-title">{{ category }}</h3>
+            <div class="price-rows">
+              {% for p in items %}
+              <div class="price-row"><span class="price-name">{{ p.item_name }}</span><span class="price-value">{{ '{:,}'.format(p.price_rub).replace(',', ' ') }} ₽</span></div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="directions-cta">
+          <a href="/prices" class="btn btn-ghost" style="border-color: var(--line-on-dark);">Полный прайс со всеми разделами</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Гостиничные номера -->
+    <section style="background: var(--paper-dim);">
+      <div class="container">
+        <div class="feature-split">
+          <div>
+            <span class="section-tag" style="color: var(--amber-deep)">Проживание</span>
+            <h2 class="section-title" style="max-width: 18ch; margin-bottom: 24px;">Гостиничные номера</h2>
+            <p class="section-desc" style="max-width: 44ch;">
+              Вы с другого города и негде остаться? У нас есть
+              гостиничные номера прямо на территории филиала — удобно,
+              если приехали на тренировки издалека или просто хотите
+              остаться на несколько дней. Количество номеров, условия
+              проживания и цены уточняйте по телефону филиала.
+            </p>
+            <a href="tel:+78512491698" class="btn btn-dark" style="margin-top: 24px;">Уточнить по телефону</a>
+          </div>
+          <div class="photo-block photo-block-hotel">
+            <div class="photo-block-label">Гостиничные номера</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="cta-title">Готовы к первой тренировке?</h2>
+      <div class="cta-actions">
+        <a href="#babajka" class="btn btn-primary">Выбрать филиал и записаться</a>
+        <a href="/prices" class="btn btn-ghost">Смотреть все цены</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/branches.js') }}"></script>
+{% endblock %}

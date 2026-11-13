@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Вход в личный кабинет — Крым{% endblock %}
+{% block description %}Вход в личный кабинет спортивного комплекса «Крым».{% endblock %}
+
+{% block content %}
+
+  <section class="auth-wrap">
+    <div class="auth-card">
+      <h1 class="auth-title">Вход</h1>
+      <p class="auth-subtitle">Войдите в личный кабинет по телефону и паролю.</p>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="auth-flash">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="post" novalidate>
+        <div class="form-field">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 900 000-00-00" required autofocus value="{{ request.form.get('phone', '') }}">
+        </div>
+        <div class="form-field">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit">Войти</button>
+      </form>
+
+      <div class="auth-switch">
+        Ещё нет аккаунта? <a href="{{ url_for('client_register') }}">Зарегистрироваться</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

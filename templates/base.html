@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Крым — спортивный комплекс{% endblock %}</title>
+  <meta name="description" content="{% block description %}Спортивный комплекс «Крым»: два филиала, единоборства, бассейн, тренажёрный зал, запись онлайн.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="is-loading">
+
+  <!-- ============ ПРЕЛОАДЕР ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-progress">
+        <span class="preloader-percent" id="preloaderPercent">00</span><span class="preloader-percent-sign">%</span>
+      </div>
+      <div class="preloader-bar"><span id="preloaderBarFill"></span></div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-row">
+      <a href="/" class="brand">
+        <img src="{{ url_for('static', filename='img/logo-transparent.png') }}" alt="Крым — спортивный комплекс">
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="/branches">Филиалы</a>
+        <a href="/#directions">Направления</a>
+        <a href="/#trainers">Тренеры</a>
+        <a href="/#recovery">Отдых</a>
+        <a href="/branches">Расписание</a>
+        <a href="/prices">Цены</a>
+        <a href="/#reviews">Отзывы</a>
+        {% if session.get('client_id') %}
+          <a href="{{ url_for('client_account') }}" class="main-nav-mobile-only">Личный кабинет</a>
+        {% else %}
+          <a href="{{ url_for('client_login') }}" class="main-nav-mobile-only">Личный кабинет</a>
+        {% endif %}
+      </nav>
+
+      <div class="header-actions">
+        {% if session.get('client_id') %}
+          <a href="{{ url_for('client_account') }}" class="btn btn-ghost">Личный кабинет</a>
+        {% else %}
+          <a href="{{ url_for('client_login') }}" class="btn btn-ghost">Личный кабинет</a>
+        {% endif %}
+        <a href="/branches" class="btn btn-dark">Записаться</a>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-scrim" id="navScrim"></div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <!-- ============ ФУТЕР ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="{{ url_for('static', filename='img/logo-transparent.png') }}" alt="Крым">
+          <p>Спортивный комплекс с двумя филиалами. Единоборства, бассейн, тренажёрный зал, групповые программы.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Филиалы</div>
+          <a href="/branches#babajka">мкр. Бабаевского</a>
+          <a href="/branches#nachalovskoe">Началовское шоссе</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Разделы</div>
+          <a href="/#directions">Направления</a>
+          <a href="/#trainers">Тренеры</a>
+          <a href="/branches">Расписание</a>
+          <a href="/prices">Цены</a>
+          <a href="/#reviews">Отзывы</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Связь</div>
+          <p>мкр. Бабаевского: 8 8512 55-13-02</p>
+          <p>Началовское ш.: 8 8512 49-16-98</p>
+          <p>Для сообщений: 8 988 073-89-99</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Спортивный комплекс «Крым»</span>
+        <div class="footer-socials">
+          <a href="#" aria-label="ВКонтакте">VK</a>
+          <a href="#" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+  {% if yandex_maps_api_key %}
+  <script src="https://api-maps.yandex.ru/2.1/?apikey={{ yandex_maps_api_key }}&lang=ru_RU"></script>
+  {% endif %}
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

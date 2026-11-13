@@ -1,0 +1,433 @@
+{% extends "base.html" %}
+
+{% block title %}Цены и абонементы — Крым{% endblock %}
+{% block description %}Цены на единоборства, бассейн, тренажёрный зал и клубные карты в спортивном комплексе «Крым», филиалы мкр. Бабаевского и Началовское шоссе.{% endblock %}
+
+{% block content %}
+
+  <!-- ============ ЗАГОЛОВОК + ПЕРЕКЛЮЧАТЕЛЬ ============ -->
+  <section class="page-hero">
+    <div class="hero-columns" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="container page-hero-inner">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Цены разные для каждого филиала
+      </div>
+      <h1 class="page-hero-title">Цены и абонементы</h1>
+      <p class="hero-sub" style="margin-bottom: 40px;">
+        Абонементы действуют 30 дней с даты покупки. Выберите филиал — цены и
+        набор услуг у каждого свои.
+      </p>
+
+      <div class="branch-switch" role="tablist" aria-label="Выбор филиала">
+        <button class="branch-switch-btn is-active" id="priceTabBabajka" role="tab" aria-selected="true" aria-controls="pricePanelBabajka" data-price-target="babajka">
+          мкр. Бабаевского
+        </button>
+        <button class="branch-switch-btn" id="priceTabNachalovskoe" role="tab" aria-selected="false" aria-controls="pricePanelNachalovskoe" data-price-target="nachalovskoe">
+          Началовское шоссе
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="price-panel is-active" id="pricePanelBabajka" role="tabpanel" aria-labelledby="priceTabBabajka">
+
+  <!-- ============ ЕДИНОБОРСТВА ============ -->
+  <section id="price-combat">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">01</span>
+        <div>
+          <span class="section-tag">Раздел</span>
+          <h2 class="section-title">Единоборства</h2>
+        </div>
+        <p class="section-desc">Абонемент действует 30 дней. Разовое посещение — без ограничения по сроку.</p>
+      </div>
+
+      <div class="price-groups">
+        <div class="price-group">
+          <h3 class="price-group-title">Бокс</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">12 занятий</span>
+              <span class="price-value">3 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое посещение</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Тайский бокс</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">12 занятий</span>
+              <span class="price-value">3 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое посещение</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Вольная борьба</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">12 занятий</span>
+              <span class="price-value">3 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое посещение</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Рукопашный бой</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">12 занятий</span>
+              <span class="price-value">3 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое посещение</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Грэпплинг</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">16 занятий</span>
+              <span class="price-value">3 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое посещение</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ БАССЕЙН ============ -->
+  <section id="price-pool" class="price-section-alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">02</span>
+        <div>
+          <span class="section-tag" style="color: var(--amber)">Раздел</span>
+          <h2 class="section-title">Бассейн</h2>
+        </div>
+        <p class="section-desc" style="color: rgba(250,248,245,0.6)">
+          Дневные абонементы действуют в дневные часы, уточняйте расписание в филиале.
+        </p>
+      </div>
+
+      <div class="price-groups price-groups-dark">
+        <div class="price-group">
+          <h3 class="price-group-title">Абонемент на посещение</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">4 посещения</span>
+              <span class="price-value">1 400 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">8 посещений</span>
+              <span class="price-value">2 500 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">12 посещений</span>
+              <span class="price-value">3 500 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Свободный (безлимит)</span>
+              <span class="price-value">7 000 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Дневной абонемент</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">4 посещения</span>
+              <span class="price-value">1 200 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">8 посещений</span>
+              <span class="price-value">2 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">12 посещений</span>
+              <span class="price-value">2 800 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Разовое посещение</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">Стандартное</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">2 часа</span>
+              <span class="price-value">600 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Детское (до 5 лет)</span>
+              <span class="price-value">200 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Аквааэробика</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">8 занятий</span>
+              <span class="price-value">3 800 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">10 занятий</span>
+              <span class="price-value">4 300 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое занятие</span>
+              <span class="price-value">550 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Обучение плаванию · взрослые</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">8 занятий</span>
+              <span class="price-value">4 900 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">10 занятий</span>
+              <span class="price-value">6 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое занятие</span>
+              <span class="price-value">700 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Обучение плаванию · дети</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">8 занятий</span>
+              <span class="price-value">3 500 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">10 занятий</span>
+              <span class="price-value">4 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое занятие</span>
+              <span class="price-value">500 ₽</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ФИТНЕС ============ -->
+  <section id="price-fitness">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">03</span>
+        <div>
+          <span class="section-tag">Раздел</span>
+          <h2 class="section-title">Тренажёрный зал и фитнес</h2>
+        </div>
+        <p class="section-desc">Дневные тарифы действуют в дневные часы, уточняйте расписание в филиале.</p>
+      </div>
+
+      <div class="price-groups">
+        <div class="price-group">
+          <h3 class="price-group-title">Тренажёрный зал</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">4 занятия</span>
+              <span class="price-value">1 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">8 занятий, дневной</span>
+              <span class="price-value">1 100 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">12 занятий, дневной</span>
+              <span class="price-value">1 500 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">8 занятий, вечерний</span>
+              <span class="price-value">1 500 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">12 занятий, вечерний</span>
+              <span class="price-value">2 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Свободный (безлимит)</span>
+              <span class="price-value">3 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое посещение</span>
+              <span class="price-value">400 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-group">
+          <h3 class="price-group-title">Фитнес-аэробика</h3>
+          <div class="price-rows">
+            <div class="price-row">
+              <span class="price-name">Абонемент</span>
+              <span class="price-value">2 000 ₽</span>
+            </div>
+            <div class="price-row">
+              <span class="price-name">Разовое занятие</span>
+              <span class="price-value">300 ₽</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ КЛУБНЫЕ КАРТЫ ============ -->
+  <section class="price-section-alt" id="price-club">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-number">04</span>
+        <div>
+          <span class="section-tag" style="color: var(--amber)">Раздел</span>
+          <h2 class="section-title">Клубные карты</h2>
+        </div>
+        <p class="section-desc" style="color: rgba(250,248,245,0.6); max-width: 46ch;">
+          Безлимитное количество посещений тренажёрного зала, бассейна и зала
+          единоборств — в часы, когда не проходят групповые занятия.
+          Действуют только в мкр. Бабаевского.
+        </p>
+      </div>
+
+      <div class="club-cards">
+        <div class="club-card">
+          <div class="club-period">1 месяц</div>
+          <div class="club-price">8 000 ₽</div>
+        </div>
+        <div class="club-card">
+          <div class="club-period">3 месяца</div>
+          <div class="club-price">18 000 ₽</div>
+        </div>
+        <div class="club-card">
+          <div class="club-period">6 месяцев</div>
+          <div class="club-price">28 000 ₽</div>
+        </div>
+        <div class="club-card club-card-accent">
+          <div class="club-period">1 год</div>
+          <div class="club-price">38 000 ₽</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- ============ ЦЕНЫ: НАЧАЛОВСКОЕ ШОССЕ ============ -->
+  <div class="price-panel" id="pricePanelNachalovskoe" role="tabpanel" aria-labelledby="priceTabNachalovskoe">
+
+    <section id="price-nach-pool">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">01</span>
+          <div>
+            <span class="section-tag">Раздел</span>
+            <h2 class="section-title">Бассейн</h2>
+          </div>
+        </div>
+
+        <div class="price-groups">
+          {% for category, items in nach_prices.items() if category != 'Бокс' %}
+          <div class="price-group">
+            <h3 class="price-group-title">{{ category }}</h3>
+            <div class="price-rows">
+              {% for p in items %}
+              <div class="price-row"><span class="price-name">{{ p.item_name }}</span><span class="price-value">{{ '{:,}'.format(p.price_rub).replace(',', ' ') }} ₽</span></div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="price-section-alt" id="price-nach-boxing">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-number">02</span>
+          <div>
+            <span class="section-tag" style="color: var(--amber)">Раздел</span>
+            <h2 class="section-title">Бокс</h2>
+          </div>
+        </div>
+
+        <div class="price-groups price-groups-dark">
+          {% for category, items in nach_prices.items() if category == 'Бокс' %}
+          <div class="price-group">
+            <h3 class="price-group-title">Абонемент</h3>
+            <div class="price-rows">
+              {% for p in items %}
+              <div class="price-row"><span class="price-name">{{ p.item_name }}</span><span class="price-value">{{ '{:,}'.format(p.price_rub).replace(',', ' ') }} ₽</span></div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="directions-cta">
+          <p class="section-desc" style="color: rgba(250,248,245,0.5); text-align: center; max-width: 50ch; margin: 0 auto;">
+            Тренажёрного зала и клубных карт на этом филиале нет — клубные карты
+            действуют только в мкр. Бабаевского.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="cta-title">Остались вопросы по ценам?</h2>
+      <div class="cta-actions">
+        <a href="tel:+78512551302" class="btn btn-primary">мкр. Бабаевского: 8 8512 55-13-02</a>
+        <a href="tel:+78512491698" class="btn btn-ghost">Началовское ш.: 8 8512 49-16-98</a>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/prices.js') }}"></script>
+{% endblock %}

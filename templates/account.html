@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Личный кабинет — Крым{% endblock %}
+{% block description %}Личный кабинет клиента спортивного комплекса «Крым».{% endblock %}
+
+{% block content %}
+
+  <section class="account-wrap">
+    <div class="account-header">
+      <div>
+        <h1 class="account-greeting">Здравствуйте, {{ client["name"] }}</h1>
+        <div class="account-phone">{{ client["phone"] }}</div>
+      </div>
+      <a href="{{ url_for('client_logout') }}" class="btn btn-ghost">Выйти</a>
+    </div>
+
+    <div class="account-section">
+      <h2 class="account-section-title">Мои записи</h2>
+      {% if bookings %}
+        <!-- TODO: когда появится система бронирования, вывести список
+             записей клиента на тренировки здесь. -->
+      {% else %}
+        <p class="account-empty">
+          Записей пока нет. Онлайн-запись на тренировки скоро появится —
+          а пока выберите филиал и запишитесь по телефону:
+          <a href="{{ url_for('branches') }}">посмотреть филиалы и расписание</a>.
+        </p>
+      {% endif %}
+    </div>
+  </section>
+
+{% endblock %}
