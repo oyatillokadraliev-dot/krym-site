@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% block title %}Цены — Админ-панель{% endblock %}
+
+{% block content %}
+  <div class="admin-header-row">
+    <div>
+      <h1 class="admin-h1">Цены — Началовское шоссе</h1>
+      <p class="admin-subtitle">
+        Цены филиала «мкр. Бабаевского» не редактируются здесь — они зависят от 1С и пока заданы в коде сайта.
+      </p>
+    </div>
+    <a href="{{ url_for('admin_price_new') }}" class="admin-btn admin-btn-primary">+ Добавить позицию</a>
+  </div>
+
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Раздел</th>
+          <th>Позиция</th>
+          <th>Цена</th>
+          <th>Порядок</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in prices %}
+        <tr>
+          <td>{{ p.category }}</td>
+          <td>{{ p.item_name }}</td>
+          <td>{{ p.price_rub }} ₽</td>
+          <td>{{ p.sort_order }}</td>
+          <td class="admin-table-actions">
+            <a href="{{ url_for('admin_price_edit', price_id=p.id) }}" class="admin-btn admin-btn-sm">Изменить</a>
+            <form method="post" action="{{ url_for('admin_price_delete', price_id=p.id) }}" onsubmit="return confirm('Удалить позицию «{{ p.item_name }}»?');">
+              <button type="submit" class="admin-btn admin-btn-sm admin-btn-danger">Удалить</button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">Цен пока нет.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

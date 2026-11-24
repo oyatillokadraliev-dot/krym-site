@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Вход для тренеров — Крым{% endblock %}
+{% block description %}Личный кабинет тренера спортивного комплекса «Крым».{% endblock %}
+
+{% block content %}
+
+  <section class="auth-wrap">
+    <div class="auth-card">
+      <h1 class="auth-title">Кабинет тренера</h1>
+      <p class="auth-subtitle">Вход по телефону и паролю, которые выдал администратор.</p>
+
+      <form method="post" novalidate>
+        <div class="form-field">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 900 000-00-00" required autofocus value="{{ request.form.get('phone', '') }}">
+        </div>
+        <div class="form-field">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit">Войти</button>
+      </form>
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "admin/base.html" %}
+{% block title %}Расписание — Админ-панель{% endblock %}
+
+{% block content %}
+  <div class="admin-header-row">
+    <div>
+      <h1 class="admin-h1">Расписание</h1>
+      <p class="admin-subtitle">Занятия по дням недели для обоих филиалов.</p>
+    </div>
+    <a href="{{ url_for('admin_schedule_new') }}" class="admin-btn admin-btn-primary">+ Добавить занятие</a>
+  </div>
+
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Филиал</th>
+          <th>Дни</th>
+          <th>Время</th>
+          <th>Занятие</th>
+          <th>Порядок</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>
+            <span class="admin-badge admin-badge-{{ item.branch }}">
+              {{ 'мкр. Бабаевского' if item.branch == 'babajka' else 'Началовское ш.' }}
+            </span>
+          </td>
+          <td>{{ item.days }}</td>
+          <td>{{ item.time_range }}</td>
+          <td>{{ item.class_name }}</td>
+          <td>{{ item.sort_order }}</td>
+          <td class="admin-table-actions">
+            <a href="{{ url_for('admin_schedule_edit', item_id=item.id) }}" class="admin-btn admin-btn-sm">Изменить</a>
+            <form method="post" action="{{ url_for('admin_schedule_delete', item_id=item.id) }}" onsubmit="return confirm('Удалить занятие «{{ item.class_name }}»?');">
+              <button type="submit" class="admin-btn admin-btn-sm admin-btn-danger">Удалить</button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6">Расписание пока пустое.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

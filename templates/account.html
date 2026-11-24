@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Личный кабинет — Крым{% endblock %}
+{% block description %}Личный кабинет клиента спортивного комплекса «Крым».{% endblock %}
+
+{% block content %}
+
+  <section class="account-wrap">
+    <div class="account-header">
+      <div>
+        <h1 class="account-greeting">Здравствуйте, {{ client["name"] }}</h1>
+        <div class="account-phone">{{ client["phone"] }}</div>
+      </div>
+      <a href="{{ url_for('client_logout') }}" class="btn btn-ghost">Выйти</a>
+    </div>
+
+    <div class="account-section">
+      <h2 class="account-section-title">Мои записи</h2>
+      {% if bookings %}
+        <div class="booking-list">
+          {% for b in bookings %}
+          <div class="booking-row">
+            <div>
+              <div class="booking-row-title">{{ b["title"] }}</div>
+              <div class="booking-row-meta">
+                {{ b["date"] }}, {{ b["start_time"] }}{% if b["end_time"] %}–{{ b["end_time"] }}{% endif %}
+                — {{ "мкр. Бабаевского" if b["branch"] == "babajka" else "Началовское шоссе" }}
+              </div>
+            </div>
+            <form method="post" action="{{ url_for('client_cancel_booking', booking_id=b['id']) }}"
+                  onsubmit="return confirm('Отменить запись на «{{ b['title'] }}»?');">
+              <button type="submit" class="btn btn-ghost">Отменить</button>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="account-empty">
+          Записей пока нет. Выберите филиал и запишитесь:
+          <a href="{{ url_for('branches') }}">посмотреть филиалы и расписание</a>.
+        </p>
+      {% endif %}
+    </div>
+  </section>
+
+{% endblock %}

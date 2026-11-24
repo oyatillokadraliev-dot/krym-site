@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вход в админ-панель — Крым</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+  <div class="admin-login-page">
+    <div class="admin-login-card">
+      <div class="admin-login-logo">
+        <img src="{{ url_for('static', filename='img/logo-transparent.png') }}" alt="Крым">
+      </div>
+      <h1>Вход в админ-панель</h1>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="admin-flash">
+            {% for message in messages %}
+              <div class="admin-flash-item">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <form method="post" class="admin-field">
+        <div class="admin-field">
+          <label for="username">Логин</label>
+          <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="admin-field">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center;">Войти</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

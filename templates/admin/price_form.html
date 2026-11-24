@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ 'Изменить позицию' if price else 'Новая позиция' }} — Админ-панель{% endblock %}
+
+{% block content %}
+  <h1 class="admin-h1">{{ 'Изменить позицию' if price else 'Новая позиция' }}</h1>
+  <p class="admin-subtitle">Филиал: Началовское шоссе.</p>
+
+  <form method="post" class="admin-form">
+    <div class="admin-field">
+      <label for="category">Раздел (например «Бассейн», «Бокс»)</label>
+      <input type="text" id="category" name="category" required value="{{ price.category if price else '' }}">
+    </div>
+
+    <div class="admin-field">
+      <label for="item_name">Название позиции</label>
+      <input type="text" id="item_name" name="item_name" required value="{{ price.item_name if price else '' }}">
+    </div>
+
+    <div class="admin-field">
+      <label for="price_rub">Цена, ₽</label>
+      <input type="number" id="price_rub" name="price_rub" required min="0" value="{{ price.price_rub if price else '' }}">
+    </div>
+
+    <div class="admin-field">
+      <label for="sort_order">Порядок отображения</label>
+      <input type="number" id="sort_order" name="sort_order" value="{{ price.sort_order if price else 0 }}">
+    </div>
+
+    <div class="admin-form-actions">
+      <button type="submit" class="admin-btn admin-btn-primary">Сохранить</button>
+      <a href="{{ url_for('admin_prices') }}" class="admin-btn">Отмена</a>
+    </div>
+  </form>
+{% endblock %}

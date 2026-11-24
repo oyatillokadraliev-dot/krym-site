@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ training["title"] }} — кабинет тренера{% endblock %}
+{% block description %}Участники занятия и отметка посещаемости.{% endblock %}
+
+{% block content %}
+
+  <section class="account-wrap">
+    <div class="account-header">
+      <div>
+        <h1 class="account-greeting">{{ training["title"] }}</h1>
+        <div class="account-phone">
+          {{ training["date"] }}, {{ training["start_time"] }}{% if training["end_time"] %}–{{ training["end_time"] }}{% endif %}
+          — {{ "мкр. Бабаевского" if training["branch"] == "babajka" else "Началовское шоссе" }}
+        </div>
+      </div>
+      <a href="{{ url_for('trainer_dashboard') }}" class="btn btn-ghost">← К расписанию</a>
+    </div>
+
+    {% if not participants_are_complete %}
+    <div class="auth-flash" style="background:#fff6e5; border-color:#f0d9a0; color:#8a6a1a;">
+      Для занятий на мкр. Бабаевского здесь показаны только записи,
+      сделанные через наш сайт. Список может быть неполным — клиенты,
+      записанные администратором непосредственно в 1С, пока не
+      отображаются: соответствующий метод API ещё не подтверждён
+      технической проверкой.
+    </div>
+    {% endif %}
+
+    <div class="account-section">
+      <h2 class="account-section-title">Участники ({{ bookings|length }})</h2>
+      {% if bookings %}
+        <div class="booking-list">
+          {% for b in bookings %}
+          <div class="booking-row">
+            <div>
+              <div class="booking-row-title">{{ b["client_name"] }}</div>
+              <div class="booking-row-meta">
+                {{ b["client_phone"] }}
+                {% if b["source"] == "1c_sync" %} · запись из 1С{% endif %}
+                {% if b["synced_to_1c"] %} · посещаемость передана в 1С{% endif %}
+              </div>
+            </div>
+            <form method="post" action="{{ url_for('trainer_mark_attendance', booking_id=b['booking_id']) }}" class="attendance-form">
+              <button type="submit" name="status" value="present"
+                      class="btn {{ 'btn-dark' if b['attendance_status'] == 'present' else 'btn-ghost' }}">Был(а)</button>
+              <button type="submit" name="status" value="absent"
+                      class="btn {{ 'btn-dark' if b['attendance_status'] == 'absent' else 'btn-ghost' }}">Не был(а)</button>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="account-empty">Пока никто не записался на это занятие.</p>
+      {% endif %}
+    </div>
+  </section>
+
+{% endblock %}
