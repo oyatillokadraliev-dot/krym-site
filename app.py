@@ -994,6 +994,7 @@ def trainer_mark_attendance(booking_id):
     conn.close()
     return redirect(url_for("trainer_training_detail", training_id=training_id))
 
+init_db()
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000, use_reloader=False)
