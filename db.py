@@ -102,6 +102,27 @@ CREATE TABLE IF NOT EXISTS bookings (
     source TEXT NOT NULL DEFAULT 'site' CHECK (source IN ('site', '1c_sync')),
     external_id TEXT,
     idempotency_key TEXT,
+    cancelled_at TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS attendance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_id INTEGER NOT NULL REFERENCES bookings(id),
+    status TEXT NOT NULL CHECK (status IN ('present', 'absent')),
+    marked_by_trainer_id INTEGER REFERENCES integration_trainers(id),
+    marked_at TEXT NOT NULL DEFAULT (datetime('now')),
+    synced_to_1c INTEGER NOT NULL DEFAULT 0,  -- передано ли в 1С (пока всегда 0 — метод не подтверждён)
+    UNIQUE (booking_id)
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    branch TEXT NOT NULL CHECK (branch IN ('babajka', 'nachalovskoe')),
+    author_name TEXT NOT NULL,
+    text TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'published' CHECK (status IN ('published', 'hidden')),
+    admin_reply TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
@@ -118,6 +139,8 @@ CREATE INDEX IF NOT EXISTS idx_trainings_branch_date ON trainings (branch, date)
 CREATE INDEX IF NOT EXISTS idx_trainings_trainer ON trainings (trainer_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_client ON bookings (client_id);
 CREATE INDEX IF NOT EXISTS idx_bookings_training ON bookings (training_id);
+CREATE INDEX IF NOT EXISTS idx_attendance_booking ON attendance (booking_id);
+CREATE INDEX IF NOT EXISTS idx_reviews_branch_status ON reviews (branch, status);
 CREATE INDEX IF NOT EXISTS idx_integration_log_branch_method ON integration_log (branch, method);
 """
 
@@ -146,6 +169,15 @@ def _ensure_trainings_1c_columns(conn):
     for column, ddl in migrations.items():
         if column not in existing:
             conn.execute(ddl)
+
+    existing_bookings = {row["name"] for row in conn.execute("PRAGMA table_info(bookings)").fetchall()}
+    if "cancelled_at" not in existing_bookings:
+        conn.execute("ALTER TABLE bookings ADD COLUMN cancelled_at TEXT")
+
+    existing_trainers = {row["name"] for row in conn.execute("PRAGMA table_info(integration_trainers)").fetchall()}
+    if "is_active" not in existing_trainers:
+        # DEFAULT 1 — существующие тренеры остаются активными после миграции.
+        conn.execute("ALTER TABLE integration_trainers ADD COLUMN is_active INTEGER NOT NULL DEFAULT 1")
 
 
 def init_db():
