@@ -59,7 +59,7 @@ def seed():
         ("nachalovskoe", "Тренажёрный зал", "Свободный доступ по абонементу, дневные и вечерние тарифы.", 3),
     ]
     cur.executemany(
-        "INSERT INTO directions (branch, name, description, sort_order) VALUES (?, ?, ?, ?)",
+        "INSERT INTO directions (branch, title, description, sort_order) VALUES (?, ?, ?, ?)",
         directions,
     )
 
@@ -111,7 +111,7 @@ def seed():
         ("nachalovskoe", "Бокс", "Абонемент 12 занятий", 3000, 13),
     ]
     cur.executemany(
-        "INSERT INTO prices (branch, category, item_name, price_rub, sort_order) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO prices (branch, group_title, title, price, sort_order) VALUES (?, ?, ?, ?, ?)",
         nach_prices,
     )
 
