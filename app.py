@@ -470,31 +470,6 @@ def login_required(view):
     return wrapped
 
 
-@app.route("/admin/seed-once")
-def admin_seed_once():
-    """
-    ВРЕМЕННЫЙ одноразовый роут для первого заполнения базы на проде
-    (Render не даёт доступа к shell на бесплатном тарифе). Безопасен,
-    потому что срабатывает только если в admin_users ещё нет ни одной
-    записи — то есть ровно один раз, на самом первом запуске. После
-    успешного использования этот роут нужно удалить из кода.
-    """
-    conn = get_connection()
-    existing_admin = conn.execute("SELECT id FROM admin_users LIMIT 1").fetchone()
-    conn.close()
-    if existing_admin:
-        return "База уже заполнена (есть хотя бы один администратор) — повторный запуск seed() заблокирован.", 403
-
-    from seed import seed
-    seed()
-    return (
-        "База успешно заполнена через seed(). Логин администратора: admin / пароль: krym2026 "
-        "(смените пароль после первого входа). "
-        "ВАЖНО: теперь удалите роут /admin/seed-once из app.py и задеплойте ещё раз.",
-        200,
-    )
-
-
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
