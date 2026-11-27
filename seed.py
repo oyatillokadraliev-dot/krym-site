@@ -27,9 +27,27 @@ def seed():
             (DEFAULT_ADMIN_USERNAME, generate_password_hash(DEFAULT_ADMIN_PASSWORD, method="pbkdf2:sha256")),
         )
 
-    # --- очистка перед заполнением (кроме admin_users, чтобы не терять пароль) ---
-    for table in ("trainers", "directions", "schedule_items", "prices", "reviews"):
-        cur.execute(f"DELETE FROM {table}")
+    # --- безопасное заполнение: трогаем только пустые таблицы ---
+    # Раньше seed() всегда удалял и пересоздавал эти 5 таблиц — это
+    # правильно для самого первого запуска, но стирает любые правки,
+    # сделанные администратором через /admin после очередного деплоя
+    # (на бесплатном тарифе Render база пересоздаётся при каждом
+    # деплое). Теперь каждая таблица заполняется дефолтными данными,
+    # только если в ней ещё нет ни одной строки — значит seed() можно
+    # безопасно ставить в Pre-Deploy Command и запускать при каждом
+    # деплое без риска затереть уже внесённые правки.
+    tables_to_seed = {
+        "trainers": "trainers",
+        "directions": "directions",
+        "schedule_items": "schedule_items",
+        "prices": "prices",
+        "reviews": "reviews",
+    }
+    already_filled = set()
+    for table in tables_to_seed:
+        count = cur.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
+        if count > 0:
+            already_filled.add(table)
 
     # --- тренеры (заглушки) ---
     trainers = [
@@ -38,10 +56,11 @@ def seed():
         ("babajka", "Тренер 3", "Бассейн", None, 3),
         ("babajka", "Тренер 4", "Тренажёрный зал", None, 4),
     ]
-    cur.executemany(
-        "INSERT INTO trainers (branch, name, sport, bio, sort_order) VALUES (?, ?, ?, ?, ?)",
-        trainers,
-    )
+    if "trainers" not in already_filled:
+        cur.executemany(
+            "INSERT INTO trainers (branch, name, sport, bio, sort_order) VALUES (?, ?, ?, ?, ?)",
+            trainers,
+        )
 
     # --- направления ---
     directions = [
@@ -58,10 +77,11 @@ def seed():
         ("nachalovskoe", "Бокс", "Групповые тренировки, разовое посещение или абонемент на 12 занятий.", 2),
         ("nachalovskoe", "Тренажёрный зал", "Свободный доступ по абонементу, дневные и вечерние тарифы.", 3),
     ]
-    cur.executemany(
-        "INSERT INTO directions (branch, title, description, sort_order) VALUES (?, ?, ?, ?)",
-        directions,
-    )
+    if "directions" not in already_filled:
+        cur.executemany(
+            "INSERT INTO directions (branch, title, description, sort_order) VALUES (?, ?, ?, ?)",
+            directions,
+        )
 
     # --- расписание: мкр. Бабаевского ---
     babajka_schedule = [
@@ -89,10 +109,11 @@ def seed():
         ("nachalovskoe", "Пн, ср, пт", "19:00", "Бокс", 10),
         ("nachalovskoe", "Вт, чт, сб", "19:00", "Бокс", 11),
     ]
-    cur.executemany(
-        "INSERT INTO schedule_items (branch, days, time_range, class_name, sort_order) VALUES (?, ?, ?, ?, ?)",
-        babajka_schedule + nach_schedule,
-    )
+    if "schedule_items" not in already_filled:
+        cur.executemany(
+            "INSERT INTO schedule_items (branch, days, time_range, class_name, sort_order) VALUES (?, ?, ?, ?, ?)",
+            babajka_schedule + nach_schedule,
+        )
 
     # --- цены: только Началовское шоссе (мкр. Бабаевского остаётся в коде шаблона) ---
     nach_prices = [
@@ -110,10 +131,11 @@ def seed():
         ("nachalovskoe", "Бокс", "Разовое", 400, 12),
         ("nachalovskoe", "Бокс", "Абонемент 12 занятий", 3000, 13),
     ]
-    cur.executemany(
-        "INSERT INTO prices (branch, group_title, title, price, sort_order) VALUES (?, ?, ?, ?, ?)",
-        nach_prices,
-    )
+    if "prices" not in already_filled:
+        cur.executemany(
+            "INSERT INTO prices (branch, group_title, title, price, sort_order) VALUES (?, ?, ?, ?, ?)",
+            nach_prices,
+        )
 
     # --- пример отзывов ---
     reviews = [
@@ -121,10 +143,11 @@ def seed():
         ("nachalovskoe", "Пример отзыва", "Удобно, что можно записаться онлайн и сразу видно расписание на неделю.", "published", None),
         ("babajka", "Пример отзыва", "Хороший зал, доброжелательная атмосфера. Детям тоже нравится на секции.", "published", None),
     ]
-    cur.executemany(
-        "INSERT INTO reviews (branch, author_name, text, status, admin_reply) VALUES (?, ?, ?, ?, ?)",
-        reviews,
-    )
+    if "reviews" not in already_filled:
+        cur.executemany(
+            "INSERT INTO reviews (branch, author_name, text, status, admin_reply) VALUES (?, ?, ?, ?, ?)",
+            reviews,
+        )
 
     conn.commit()
     conn.close()
